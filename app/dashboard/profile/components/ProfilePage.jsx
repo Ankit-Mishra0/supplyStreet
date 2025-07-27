@@ -1,17 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { auth, db, storage } from "@/lib/firebase";
-import {
-  doc,
-  getDoc,
-  updateDoc,
-  Timestamp,
-} from "firebase/firestore";
-import {
-  signOut,
-  onAuthStateChanged,
-} from "firebase/auth";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { auth, db } from "@/lib/firebase";
+import { doc, getDoc, updateDoc, Timestamp } from "firebase/firestore";
+import { signOut, onAuthStateChanged } from "firebase/auth";
 import Image from "next/image";
 
 const ProfilePage = () => {
@@ -26,8 +17,13 @@ const ProfilePage = () => {
   const [newLocation, setNewLocation] = useState("");
 
   const colorOptions = [
-    "bg-red-400", "bg-green-400", "bg-blue-400", "bg-yellow-400",
-    "bg-purple-400", "bg-pink-400", "bg-indigo-400"
+    "bg-red-400",
+    "bg-green-400",
+    "bg-blue-400",
+    "bg-yellow-400",
+    "bg-purple-400",
+    "bg-pink-400",
+    "bg-indigo-400",
   ];
 
   useEffect(() => {
@@ -59,16 +55,49 @@ const ProfilePage = () => {
     setUserData((prev) => ({ ...prev, [field]: value.trim() }));
   };
 
-  const handleImageUpload = async (e) => {
+  const uploadToImgBB = async (file) => {
+    const imageData = new FormData();
+    imageData.append("image", file);
+
+    const res = await fetch(
+      `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_API_KEY}`,
+      {
+        method: "POST",
+        body: imageData,
+      }
+    );
+    const data = await res.json();
+    return data.data.url;
+  };
+
+  const handleProfileImageUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
-    const storageRef = ref(storage, `profile_images/${userData.uid}`);
-    await uploadBytes(storageRef, file);
-    const imageUrl = await getDownloadURL(storageRef);
-    await updateDoc(doc(db, "users", userData.uid), {
-      image: imageUrl,
-    });
-    setUserData((prev) => ({ ...prev, image: imageUrl }));
+    try {
+      const imageUrl = await uploadToImgBB(file);
+      await updateDoc(doc(db, "users", userData.uid), {
+        image: imageUrl,
+      });
+      setUserData((prev) => ({ ...prev, image: imageUrl }));
+    } catch (err) {
+      alert("Failed to upload profile image.");
+      console.error(err);
+    }
+  };
+
+  const handleShopImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    try {
+      const imageUrl = await uploadToImgBB(file);
+      await updateDoc(doc(db, "users", userData.uid), {
+        shopImage: imageUrl,
+      });
+      setUserData((prev) => ({ ...prev, shopImage: imageUrl }));
+    } catch (err) {
+      alert("Failed to upload shop image.");
+      console.error(err);
+    }
   };
 
   const getInitial = (name) => name?.charAt(0)?.toUpperCase();
@@ -107,7 +136,7 @@ const ProfilePage = () => {
           <input
             type="file"
             accept="image/*"
-            onChange={handleImageUpload}
+            onChange={handleProfileImageUpload}
             className="hidden"
           />
           🖊️
@@ -244,6 +273,29 @@ const ProfilePage = () => {
             </button>
           </div>
         )}
+      </div>
+
+      {/* Shop Image Upload */}
+      <div className="w-full max-w-md">
+        <label className="block font-medium mb-2">🏬 Shop Image</label>
+        {userData?.shopImage ? (
+          <img
+            src={userData.shopImage}
+            alt="Shop"
+            className="w-full h-40 object-cover rounded mb-2"
+          />
+        ) : (
+          <p className="text-gray-500 text-sm mb-2">No shop image added yet.</p>
+        )}
+        <label className="block bg-green-600 text-white text-center py-2 rounded cursor-pointer hover:bg-green-700 transition">
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleShopImageUpload}
+            className="hidden"
+          />
+           Upload Shop Image
+        </label>
       </div>
 
       {/* Logout */}

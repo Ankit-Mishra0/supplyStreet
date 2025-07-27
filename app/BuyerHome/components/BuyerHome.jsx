@@ -42,28 +42,28 @@ const BuyerHome = () => {
 
   // ✅ Fetch All Real Sellers (users with storeName)
   const fetchSellers = async () => {
-    try {
-      const querySnapshot = await getDocs(collection(db, "users"));
-      const realSellers = [];
+  try {
+    const querySnapshot = await getDocs(collection(db, "users"));
+    const realSellers = [];
 
-      for (const userDoc of querySnapshot.docs) {
-        const userData = userDoc.data();
-        if (userData.storeName) {
-          realSellers.push({
-            id: userDoc.id,
-            name: userData.storeName,
-            image:
-              "https://www.simplyrecipes.com/thmb/bANLmp7Tlo0v0DDnivKFZ3THCb8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Simply-Recipes-Grocery-Store-Tips-LEAD-OPTION-02-24855a8ff1d643f39dd108c184d7bea5.jpg",
-            location: userData.location || "Unknown",
-          });
-        }
+    for (const userDoc of querySnapshot.docs) {
+      const userData = userDoc.data();
+      if (userData.storeName) {
+        realSellers.push({
+          id: userDoc.id,
+          name: userData.storeName,
+          image: userData.shopImage || "https://www.simplyrecipes.com/thmb/bANLmp7Tlo0v0DDnivKFZ3THCb8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Simply-Recipes-Grocery-Store-Tips-LEAD-OPTION-02-24855a8ff1d643f39dd108c184d7bea5.jpg",
+          location: userData.location || "Unknown",
+        });
       }
-
-      setSellers(realSellers);
-    } catch (err) {
-      console.error("Error fetching sellers:", err);
     }
-  };
+
+    setSellers(realSellers);
+  } catch (err) {
+    console.error("Error fetching sellers:", err);
+  }
+};
+
 
   useEffect(() => {
     fetchProducts();

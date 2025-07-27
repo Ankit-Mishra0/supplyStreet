@@ -24,7 +24,7 @@ export default function AboutPage() {
 
         {/* Problem Section */}
         <section>
-          <h2 className="text-2xl font-bold text-red-500 mb-3">🚧 The Challenge</h2>
+          <h2 className="text-2xl font-bold text-red-500 mb-3">The Challenge</h2>
           <p className="text-base md:text-lg font-medium text-gray-900 leading-relaxed">
             Street vendors face daily struggles — buying raw materials from unreliable sources, high prices from middlemen, wasted time in markets, and no easy way to compare options.
           </p>
@@ -32,7 +32,7 @@ export default function AboutPage() {
 
         {/* Solution Section */}
         <section>
-          <h2 className="text-2xl font-bold text-orange-500 mb-3">💡 What Supplico Does</h2>
+          <h2 className="text-2xl font-bold text-orange-500 mb-3">What Supplico Does</h2>
           <p className="text-base md:text-lg font-medium text-gray-900 leading-relaxed">
             Supplico helps vendors save money, time, and stress. We bring verified sellers directly to their phone — with transparent pricing, local options, and trusted service.
           </p>
