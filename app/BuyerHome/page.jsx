@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import SearchBar from "@/components/SearchBar";
 import ProductCard from "@/components/ProductCard";
 import SellerCard from "@/components/SellerCard";
+import Link from "next/link";
 
 const mockProducts = [
   {
@@ -106,6 +107,13 @@ const HomePage = () => {
       ) : (
         <p className="text-gray-500 text-center mb-10">No products found.</p>
       )}
+
+      <Link
+  href="/buyer/products"
+  className="block text-center mt-4 text-orange-700 font-semibold hover:underline"
+>
+  Show More →
+</Link>
 
       {/* Seller Cards */}
       <h2 className="text-xl font-semibold mb-4 text-red-600">Nearby Top Sellers</h2>
