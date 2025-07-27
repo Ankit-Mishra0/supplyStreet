@@ -18,8 +18,7 @@ This project was built as part of Tutedude's Web Development Hackathon to solve 
 
 ## 💡 Our Solution
 
-> *(Write a short paragraph here describing the goal and purpose of your project. For example:)*  
-We built a smart e-commerce platform aimed at helping Indian street food vendors source raw materials affordably. The platform includes features like price sorting, budget filtering, best seller recommendations, and real-time supplier discovery.
+We built a smart e-commerce platform aimed at helping Indian street food vendors source raw materials affordably. The platform includes features like adding your own product, add your shop, and real-time supplier discovery.
 
 ## 🛠️ Tech Stack
 
