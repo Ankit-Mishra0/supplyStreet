@@ -16,7 +16,6 @@ import {
 } from "firebase/firestore";
 import Image from "next/image";
 
-
 const MyListingPage = () => {
   const [products, setProducts] = useState([]);
   const [formData, setFormData] = useState({
@@ -242,6 +241,8 @@ const MyListingPage = () => {
             <Image
               src={URL.createObjectURL(formData.imageFile)}
               alt="Preview"
+              width={300}
+              height={128}
               className="w-full h-32 object-cover rounded"
             />
           )}
@@ -271,6 +272,8 @@ const MyListingPage = () => {
             <Image
               src={product.image}
               alt={product.name}
+              width={300}
+              height={160}
               className="w-full h-40 object-cover rounded-md mb-4"
             />
             <h3 className="text-lg font-bold">{product.name}</h3>
