@@ -1,15 +1,12 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { setDoc, doc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
-import { storage, db, auth } from "@/lib/firebase";
+import { db, auth } from "@/lib/firebase";
 import { useRouter } from "next/navigation";
 
 const SetupPage = () => {
-  const [image, setImage] = useState(null);
-  const [previewUrl, setPreviewUrl] = useState(null);
-  const [preview, setPreview] = useState(false);
+  const [storeName, setStoreName] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [user, setUser] = useState(null);
@@ -24,37 +21,17 @@ const SetupPage = () => {
     return () => unsubscribe();
   }, []);
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file && file.type.startsWith("image/")) {
-      setImage(file);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreviewUrl(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!user) return alert("User not logged in");
-    console.log("Submitting for user:", user);
-
-    let imageUrl = "";
-    if (image) {
-      const storageRef = ref(storage, `users/${user.uid}/profile.jpg`);
-      const snapshot = await uploadBytes(storageRef, image);
-      imageUrl = await getDownloadURL(snapshot.ref);
-    }
-
+  
     const data = {
       uid: user.uid,
       name,
       email,
+      storeName,
       phone: user.phoneNumber || "",
-      image: imageUrl,
       provider: user.providerData[0]?.providerId || "phone",
       createdAt: new Date(),
     };
@@ -101,36 +78,16 @@ const SetupPage = () => {
               onChange={(e) => setEmail(e.target.value)}
               className="w-[90%] font-semibold bg-white rounded-lg p-2 outline-none"
             />
-
             <input
-              type="file"
-              name="image"
-              id="image"
-              accept="image/*"
-              onChange={handleImageChange}
-              className="hidden"
+              type="text"
+              name="storeName"
+              id="storeName"
+              placeholder="Have a store? Enter its name"
+              value={storeName}
+              onChange={(e) => setStoreName(e.target.value)}
+              
+              className="w-[90%] font-semibold bg-white rounded-lg p-2 outline-none"
             />
-
-            <div className="flex flex-row gap-2">
-              <label
-                htmlFor="image"
-                className="p-3 rounded-md bg-white text-gray-500 font-bold cursor-pointer hover:bg-gray-100 transition-all"
-              >
-                {image ? image.name : "Upload profile image"}
-              </label>
-              <button
-                type="button"
-                disabled={!previewUrl}
-                onClick={() => setPreview(true)}
-                className={`p-3 rounded-md font-bold transition-all ${
-                  previewUrl
-                    ? "text-black hover:text-slate-600"
-                    : "text-gray-400 cursor-not-allowed"
-                }`}
-              >
-                Preview
-              </button>
-            </div>
 
             <button
               type="submit"
@@ -141,25 +98,6 @@ const SetupPage = () => {
           </form>
         </div>
       </div>
-
-      {/* Image Preview Modal */}
-      {preview && (
-        <div className="fixed inset-0 bg-white/90 flex items-center justify-center z-50">
-          <div className="flex flex-col items-center gap-4">
-            <img
-              src={previewUrl}
-              alt="Image Preview"
-              className="w-64 h-64 object-cover rounded-full border-4 border-white shadow-lg"
-            />
-            <button
-              onClick={() => setPreview(false)}
-              className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition"
-            >
-              Close Preview
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

@@ -3,25 +3,21 @@
 import React from "react";
 import { Star } from "lucide-react";
 
-const ProductCard = ({ id, name, price, rating, image, onClick }) => {
+const ProductCard = ({ name, price, image, storeName, location }) => {
   return (
-    <div
-      onClick={onClick}
-      className="cursor-pointer bg-white p-4 rounded-xl shadow-md border border-yellow-300 transition-transform hover:scale-105"
-    >
+    <div className="bg-white rounded-lg shadow-md p-4 flex flex-col gap-2">
       <img
         src={image}
         alt={name}
-        className="w-full h-40 object-cover rounded-md mb-3"
+        className="w-full h-40 object-cover rounded"
       />
-      <h3 className="font-bold text-orange-700 text-lg">{name}</h3>
-      <p className="text-sm text-gray-700 mb-1">{price}</p>
-      <div className="flex items-center text-yellow-500">
-        <Star size={16} fill="currentColor" />
-        <span className="ml-1 text-sm">{rating}</span>
-      </div>
+      <h3 className="text-lg font-bold">{name}</h3>
+      <p className="text-gray-600 text-sm">₹{price}</p>
+      <p className="text-gray-500 text-xs">Sold by: {storeName}</p>
+      <p className="text-gray-400 text-xs">📍 {location}</p>
     </div>
   );
 };
+
 
 export default ProductCard;

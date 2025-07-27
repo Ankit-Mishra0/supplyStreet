@@ -11,6 +11,7 @@ import PhoneInput from "react-phone-number-input";
 import { isValidPhoneNumber } from "react-phone-number-input";
 import { storeUser } from "@/lib/user";
 import { doc, getDoc } from "firebase/firestore";
+import Link from "next/link";
 
 const LoginPage = () => {
   const [phone, setPhone] = React.useState("");
@@ -191,8 +192,21 @@ const LoginPage = () => {
                   <GoogleIcon className="text-red-600 md:!size-8 mr-4 mb-1" /> Google
                 </button>
               </div>
+              
             </div>
           </form>
+          <Link href="/BuyerHome"><div
+               
+                className={`flex w-[80%] items-center justify-center px-3 py-2 font-bold rounded-md shadow-md transition-all duration-300 ${
+                  loading || otpSent
+                    ? "bg-gray-300 cursor-not-allowed"
+                    : "bg-white hover:bg-slate-800 hover:text-white"
+                }`}
+              >
+                <button disabled={loading || otpSent}>
+                 Home
+                </button>
+              </div></Link>
         </div>
       </div>
     </div>
