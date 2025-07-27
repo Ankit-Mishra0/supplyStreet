@@ -32,7 +32,7 @@ We built a smart e-commerce platform aimed at helping Indian street food vendors
 ## 📸 Screenshots
 
 ### Homepage
-![Homepage](./public/homepage.png)
+![Homepage](./public/Homepage.png)
 
 ### Dashboard
 ![Dashboard](./public/dashboard.png)
