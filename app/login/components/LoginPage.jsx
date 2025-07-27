@@ -28,7 +28,7 @@ const LoginPage = () => {
       const userDocSnap = await getDoc(userDocRef);
 
       if (userDocSnap.exists()) {
-        router.push("/dashboard");
+       router.back();
       } else {
         router.push("/setup");
       }
