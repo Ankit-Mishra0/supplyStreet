@@ -75,13 +75,13 @@ export default function Navbar() {
         <div className="space-x-6 text-md font-semibold flex items-center relative">
           <Link
             href="/about"
-            className="text-orange-600 hover:text-orange-700 transition text-xl font-semibold"
+            className="text-orange-600 hover:text-orange-700 transition text-lg font-bold"
           >
             About
           </Link>
            {path!="/BuyerHome"&&<Link
             href="/BuyerHome"
-            className="text-orange-600 hover:text-orange-700 transition text-xl font-semibold"
+            className="text-orange-600 hover:text-orange-700 transition text-lg font-bold"
           >
             Buy
           </Link>}
@@ -89,7 +89,7 @@ export default function Navbar() {
           {!path.startsWith("/dashboard") && (
             <Link
               href="/dashboard"
-              className="text-orange-600 hover:text-orange-700 transition text-xl font-semibold"
+              className="text-orange-600 hover:text-orange-700 transition text-lg font-bold"
             >
               Dashboard
             </Link>
@@ -99,7 +99,7 @@ export default function Navbar() {
           {!user &&!path.startsWith("/dashboard") && (
             <Link
               href="/login"
-              className="bg-red-500 text-white px-4 py-2 rounded-xl hover:bg-red-600 transition text-xl font-bold"
+              className="bg-red-500 text-white px-4 py-2 rounded-xl hover:bg-red-700 transition text-lg font-bold"
             >
               Login
             </Link>
@@ -128,13 +128,13 @@ export default function Navbar() {
 
               {/* Logout Menu */}
               {menuOpen && (
-                <div className="absolute right-0 mt-2 w-40 bg-white border rounded-md shadow-lg z-50">
-                  <div  className="block w-full px-4 py-2 text-sm text-left text-red-600 border-b border-orange-500">
+                <div className="absolute right-0 mt-2 w-45 bg-white border rounded-md shadow-lg z-50">
+                  <div  className="block w-full px-4 py-2 text-sm text-left text-red-500 border-b border-orange-500 font-bold">
                     Hello {userData.name}
                   </div>
                   <button
                     onClick={handleLogout}
-                    className="block w-full px-4 py-2 text-sm text-left text-red-600 hover:bg-gray-100"
+                    className="block w-full px-4 py-2 text-lg text-left text-white hover:bg-red-700 font-bold bg-red-600"
                   >
                     Logout
                   </button>

@@ -15,8 +15,8 @@ export default function Footer() {
 
         {/* Services */}
         <div>
-          <u><h3 className="text-lg font-bold mb-2">Services</h3></u>
-          <ul className="space-y-0.5  text-sm">
+          <u><h3 className="text-sm font-bold mb-2">Services</h3></u>
+          <ul className="space-y-0.5  text-xs">
             <li>Raw Material Supply</li>
             <li>Vendor-Buyer Matching</li>
             <li>Location-based Discovery</li>
@@ -26,8 +26,8 @@ export default function Footer() {
 
         {/* Contact */}
         <div>
-          <u><h3 className="text-lg font-bold mb-2">Contact Us</h3></u>
-          <ul className="space-y-0.5 text-sm">
+          <u><h3 className="text-sm font-bold mb-2">Contact Us</h3></u>
+          <ul className="space-y-0.5 text-xs">
             <li>Email: support@supplico.in</li>
             <li>Phone: +91 1234567890</li>
             <li>Location: Delhi, India</li>
@@ -52,7 +52,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom Line */}
-      <div className=" bg-black text-center text-white text-s p-0.5 border-t">
+      <div className=" bg-black text-center text-white text-xs p-0.5 border-t">
         &copy; {new Date().getFullYear()} Supplico. All rights reserved.
       </div>
     </footer>

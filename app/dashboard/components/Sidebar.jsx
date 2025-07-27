@@ -7,7 +7,7 @@ const Sidebar = () => {
   const path = usePathname();
 
   return (
-    <div className="w-[30%] md:w-[30%] lg:w-[10%] bg-gradient-to-br from-yellow-300 to-yellow-100 h-[100%] shadow-xl flex flex-col gap-10 items-center pt-10 justify-between">
+    <div className="w-[30%] md:w-[30%] lg:w-[10%] bg-gradient-to-br from-yellow-200 to-yellow-100 h-[100%] shadow-xl flex flex-col gap-10 items-center pt-10 justify-between">
       <div className="flex flex-col gap-10 items-center">
         <Link href="/dashboard">
           <div
