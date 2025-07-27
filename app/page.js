@@ -1,7 +1,9 @@
 "use client";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -56,6 +58,11 @@ export default function Home() {
           </Link>
         </motion.div>
       </div>
+<<<<<<< HEAD
+      <Footer/>
+=======
+      <Footer />
+>>>>>>> my-fix-branch
     </>
   );
 }

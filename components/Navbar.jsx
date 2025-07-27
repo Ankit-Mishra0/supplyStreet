@@ -58,7 +58,7 @@ export default function Navbar() {
   const getInitial = (name) => name?.charAt(0)?.toUpperCase();
 
   return (
-    <nav className="bg-white shadow-md top-0 left-0 w-full z-50">
+    <nav className="bg-red-50 shadow-md fixed top-0 left-0 w-full z-50 ">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo */}
         <Link href="/">
@@ -71,13 +71,13 @@ export default function Navbar() {
         <div className="space-x-6 text-md font-semibold flex items-center relative">
           <Link
             href="/about"
-            className="text-orange-600 hover:text-red-600 transition"
+            className="text-orange-600 hover:text-orange-700 transition text-xl font-semibold"
           >
             About
           </Link>
            {path!="/BuyerHome"&&<Link
             href="/BuyerHome"
-            className="text-orange-600 hover:text-red-600 transition"
+            className="text-orange-600 hover:text-orange-700 transition text-xl font-semibold"
           >
             Buy
           </Link>}
@@ -85,7 +85,7 @@ export default function Navbar() {
           {!path.startsWith("/dashboard") && (
             <Link
               href="/dashboard"
-              className="text-orange-600 hover:text-red-600 transition"
+              className="text-orange-600 hover:text-orange-700 transition text-xl font-semibold"
             >
               Dashboard
             </Link>
@@ -95,7 +95,7 @@ export default function Navbar() {
           {!user &&!path.startsWith("/dashboard") && (
             <Link
               href="/login"
-              className="bg-red-500 text-white px-4 py-2 rounded-xl hover:bg-red-600 transition"
+              className="bg-red-500 text-white px-4 py-2 rounded-xl hover:bg-red-600 transition text-xl font-bold"
             >
               Login
             </Link>

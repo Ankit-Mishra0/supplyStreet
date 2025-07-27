@@ -11,8 +11,10 @@ const SellerCard = ({ name, image, location }) => {
         alt={name}
         className="w-full h-40 object-cover rounded mb-2"
       />
-      <h3 className="text-lg font-bold">{name}</h3>
-      <p className="text-gray-500 text-sm">📍 {location}</p>
+      <div className="flex flex-col text-center bg-gradient-to-r from-red-600 to-orange-500  text-transparent bg-clip-text">
+        <h3 className="text-xl font-bold">{name}</h3>
+        <p className="text-gray-500 text-sm">📍 {location}</p>
+    </div>
     </div>
   );
 };

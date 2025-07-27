@@ -122,7 +122,7 @@ const MyListingPage = () => {
       {/* Toggle Form Button */}
       <button
         onClick={() => setShowForm(!showForm)}
-        className="mb-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+        className="mb-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 transition font-bold"
       >
         {showForm ? "Cancel" : "➕ Add Product"}
       </button>
