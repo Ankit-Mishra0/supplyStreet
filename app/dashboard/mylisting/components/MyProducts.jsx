@@ -91,6 +91,15 @@ const MyListingPage = () => {
           }
         );
         const data = await res.json();
+        console.log("ImgBB response:", data); // Helpful for debugging
+
+        if (!res.ok || !data?.data?.url) {
+          console.error("Image upload failed", data);
+          alert("Image upload failed.");
+          setLoading(false);
+          return;
+        }
+
         imageUrl = data.data.url;
       } catch (err) {
         console.error("Image upload failed", err);
