@@ -5,15 +5,15 @@ import MyListingPage from "./components/MyProducts";
 import { useRouter } from "next/navigation";
 import useAuth from "@/lib/hooks/useAuth";
 
-const page = () => {
+const ProductListingPage = () => {
   const { user, loading } = useAuth();
-      const router = useRouter();
+      const Router = useRouter();
     
       useEffect(() => {
         if (!loading && !user) {
-          router.push("/login"); 
+          Router.push("/login"); 
         }
-      }, [user, loading, router]);
+      }, [user, loading, Router]);
     
       if (loading || !user)
         return <div className="text-center p-10">Loading...</div>;
@@ -26,4 +26,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default ProductListingPage;

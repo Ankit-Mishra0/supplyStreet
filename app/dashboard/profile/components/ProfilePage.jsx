@@ -279,7 +279,7 @@ const ProfilePage = () => {
       <div className="w-full max-w-md">
         <label className="block font-medium mb-2">🏬 Shop Image</label>
         {userData?.shopImage ? (
-          <img
+          <Image
             src={userData.shopImage}
             alt="Shop"
             className="w-full h-40 object-cover rounded mb-2"

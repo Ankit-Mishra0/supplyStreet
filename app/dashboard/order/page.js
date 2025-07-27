@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import useAuth from "@/lib/hooks/useAuth";
 import OrderDashboard from './Order';
 
-const page = () => {
+const OrderPage = () => {
     const { user, loading } = useAuth();
     const router = useRouter();
   
@@ -27,4 +27,4 @@ const page = () => {
   )
 }
 
-export default page
+export default OrderPage

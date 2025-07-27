@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Star } from "lucide-react";
+import Image from "next/image";
 
 const SellerCard = ({ name, image, location }) => {
   return (

@@ -14,6 +14,8 @@ import {
   updateDoc,
   Timestamp,
 } from "firebase/firestore";
+import Image from "next/image";
+
 
 const MyListingPage = () => {
   const [products, setProducts] = useState([]);
@@ -237,7 +239,7 @@ const MyListingPage = () => {
           </label>
 
           {formData.imageFile && (
-            <img
+            <Image
               src={URL.createObjectURL(formData.imageFile)}
               alt="Preview"
               className="w-full h-32 object-cover rounded"
@@ -266,7 +268,7 @@ const MyListingPage = () => {
             key={product.id}
             className="border rounded-md shadow-md p-4 flex flex-col items-center bg-white"
           >
-            <img
+            <Image
               src={product.image}
               alt={product.name}
               className="w-full h-40 object-cover rounded-md mb-4"
