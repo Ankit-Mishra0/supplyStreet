@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🧑‍💻 DEV G - Web Development Hackathon Submission
 
-## Getting Started
+Welcome to the official repository of **Team DEV G** for the **Tutedude Web Development Hackathon**.
 
-First, run the development server:
+## 🚀 Project Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This project was built as part of Tutedude's Web Development Hackathon to solve real-world challenges using web technologies. We focused on innovation, usability, and impactful design to bring our idea to life.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🏆 Hackathon Details
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Event:** Tutedude Web Development Hackathon  
+- **Category:** Web Development  
+- **Team Name:** DEV G  
+- **Team Members:**
+  - Ankit Mishra  
+  - Nishant Pal  
+  - Amit Kumar  
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 💡 Our Solution
 
-## Learn More
+> *(Write a short paragraph here describing the goal and purpose of your project. For example:)*  
+We built a smart e-commerce platform aimed at helping Indian street food vendors source raw materials affordably. The platform includes features like price sorting, budget filtering, best seller recommendations, and real-time supplier discovery.
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠️ Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Frontend:** React.js (Next.js), Tailwind CSS  
+- **Backend:** Firebase Firestore  
+- **Authentication:** Firebase Auth  
+- **Image Handling:** ImgBB API  
+- **Deployment:** Vercel
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📸 Screenshots
 
-## Deploy on Vercel
+### Homepage
+![Homepage](./public/homepage.png)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Dashboard
+![Dashboard](./public/dashboard.png)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Add Products Page
+![Add Product](./public/addproducts.png)
+
+### Buyer Page
+![Buyer Page](./public/buyerpage.png)
+
+## 🧑‍🤝‍🧑 Team Contributions
+
+- **Ankit Mishra** – Frontend & Firebase Integration  
+- **Nishant Pal** – UI/UX Design & Routing  
+- **Amit Kumar** – Backend Logic & Database Structuring  
+
+## 📬 Contact
+
+If you’d like to get in touch or learn more, feel free to reach out to us!
+
+---
+
+Thanks for checking out our project. We hope you like it! 🙌
