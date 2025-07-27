@@ -1,12 +1,17 @@
 import React from 'react'
-import Sidebar from '../components/Sidebar'
+// import Sidebar from '../components/Sidebar'
+// import Navbar from '@/components/Navbar'
+import ProfilePage from './components/ProfilePage';
 
 const page = () => {
   return (
-    <div>
-      <Sidebar />
+    <div className="flex flex-col min-h-screen bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-100">
+      {/* <Navbar /> */}
+    <div className="flex flex-row w-full h-screen ">
+      <ProfilePage/>
     </div>
-  )
+    </div>
+  );
 }
 
 export default page

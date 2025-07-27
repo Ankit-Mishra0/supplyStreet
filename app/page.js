@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -46,18 +47,22 @@ export default function Home() {
         >
           <Link href="/BuyerHome">
             <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold text-lg sm:text-xl py-4 px-8 rounded-xl shadow-md transition w-full sm:w-auto">
-              Get Started as a Buyer
+               Buyer
             </button>
           </Link>
 
           <Link href="/dashboard">
             <button className="bg-red-600 hover:bg-red-700 text-white font-bold text-lg sm:text-xl py-4 px-8 rounded-xl shadow-md transition w-full sm:w-auto">
-              Get Started as a Seller
+               Seller
             </button>
           </Link>
         </motion.div>
       </div>
+<<<<<<< HEAD
       <Footer/>
+=======
+      <Footer />
+>>>>>>> my-fix-branch
     </>
   );
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -90,8 +91,15 @@ const HomePage = () => {
   const filteredProducts = mockProducts.filter((product) =>
     product.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
+=======
+import React from 'react'
+import BuyerHome from './components/BuyerHome'
+import Navbar from '@/components/Navbar'
+>>>>>>> my-fix-branch
 
+const page = () => {
   return (
+<<<<<<< HEAD
     <div className="min-h-screen px-4 py-6 bg-gradient-to-br from-red-100 via-yellow-50 to-orange-100">
       {/* Search Bar */}
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
@@ -122,9 +130,15 @@ const HomePage = () => {
       <SellerCard key={seller.id} {...seller} />
         ))}
         
+=======
+    <div>
+      <Navbar />
+      <div className=' pt-18'>
+      <BuyerHome/>
+>>>>>>> my-fix-branch
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default HomePage;
+export default page
