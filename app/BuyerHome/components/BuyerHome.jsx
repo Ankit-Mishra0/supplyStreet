@@ -93,7 +93,7 @@ const BuyerHome = () => {
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
 
       {/* Product Cards */}
-      <h2 className="text-2xl font-bold mb-4 text-red-600">Top Products</h2>
+      <h2 className="text-3xl font-extrabold mb-4 text-red-600">Top Products</h2>
       {filteredProducts.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-10">
           {filteredProducts.slice(0, 8).map((product) => (
@@ -105,7 +105,7 @@ const BuyerHome = () => {
       )}
 
       {/* Seller Cards */}
-      <h2 className="text-2xl font-bold mb-4 text-red-600">
+      <h2 className="text-3xl font-extrabold mb-4 text-red-600">
         Nearby Top Sellers
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
