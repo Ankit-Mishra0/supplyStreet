@@ -11,10 +11,12 @@ const ProductCard = ({ name, price, image, storeName, location }) => {
         alt={name}
         className="w-full h-40 object-cover rounded"
       />
-      <h3 className="text-lg font-bold">{name}</h3>
-      <p className="text-gray-600 text-sm">₹{price}</p>
-      <p className="text-gray-500 text-xs">Sold by: {storeName}</p>
-      <p className="text-gray-400 text-xs">📍 {location}</p>
+      <div className="flex flex-col text-center bg-gradient-to-r from-red-600 to-orange-500  text-transparent bg-clip-text">
+        <h3 className="text-xl font-extrabold ">{name}</h3>
+        <p className="text-gray-800 text-lg font-bold ">₹{price}</p>
+        <p className="text-gray-700 text-sm font-bold">Sold by: {storeName}</p>
+        <p className="text-gray-600 text-xs">📍 {location}</p>
+      </div>
     </div>
   );
 };

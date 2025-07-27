@@ -1,12 +1,12 @@
 import React from 'react'
-import Sidebar from '../components/Sidebar'
+// import Sidebar from '../components/Sidebar'
 import Navbar from '@/components/Navbar'
 
 const page = () => {
   return (
-    <div>
+    <div className='min-h-screen bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-100'>
       <Navbar/>
-      <Sidebar />
+      {/* <Sidebar /> */}
     </div>
   )
 }

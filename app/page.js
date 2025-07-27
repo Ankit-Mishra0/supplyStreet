@@ -2,6 +2,7 @@
 import Navbar from "@/components/Navbar";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -56,6 +57,7 @@ export default function Home() {
           </Link>
         </motion.div>
       </div>
+      <Footer />
     </>
   );
 }
