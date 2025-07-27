@@ -16,6 +16,7 @@ import {
 import { onAuthStateChanged } from "firebase/auth";
 import toast, { Toaster } from "react-hot-toast";
 import Navbar from "@/components/Navbar";
+import Image from "next/image";
 
 const ProductDetailPage = () => {
   const { id } = useParams();
@@ -132,7 +133,7 @@ const ProductDetailPage = () => {
       {/* Product Section */}
       <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col md:flex-row mb-10">
         <div className="md:w-1/2">
-          <img
+          <Image
             src={product.image}
             alt={product.name}
             className="h-full w-full object-cover"
