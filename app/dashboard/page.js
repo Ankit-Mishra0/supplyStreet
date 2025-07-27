@@ -20,7 +20,7 @@ const DashboardPage = () => {
 
   return (
     
-    <div className="flex flex-row w-full min-h-screen bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-100">
+    <div className="flex flex-row w-full min-h-screen bg-gradient-to-r ">
       <HomePage user={user} /> {/* Pass user down */}
     </div>
 

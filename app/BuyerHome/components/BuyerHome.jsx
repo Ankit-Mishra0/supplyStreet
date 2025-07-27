@@ -10,7 +10,6 @@ import { collection, getDocs, doc, getDoc } from "firebase/firestore";
 const BuyerHome = () => {
   const [products, setProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [location, setLocation] = useState(null);
   const [sellers, setSellers] = useState([]);
 
   // ✅ Fetch Products with Seller Info
@@ -54,7 +53,7 @@ const BuyerHome = () => {
             id: userDoc.id,
             name: userData.storeName,
             image:
-              "https://www.simplyrecipes.com/thmb/bANLmp7Tlo0v0DDnivKFZ3THCb8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Simply-Recipes-Grocery-Store-Tips-LEAD-OPTION-02-24855a8ff1d643f39dd108c184d7bea5.jpg", // 🔁 Static image
+              "https://www.simplyrecipes.com/thmb/bANLmp7Tlo0v0DDnivKFZ3THCb8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Simply-Recipes-Grocery-Store-Tips-LEAD-OPTION-02-24855a8ff1d643f39dd108c184d7bea5.jpg",
             location: userData.location || "Unknown",
           });
         }
@@ -69,18 +68,6 @@ const BuyerHome = () => {
   useEffect(() => {
     fetchProducts();
     fetchSellers();
-
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        setLocation({
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        });
-      },
-      (error) => {
-        console.error("Geolocation error:", error);
-      }
-    );
   }, []);
 
   const filteredProducts = products.filter((product) =>
@@ -106,7 +93,7 @@ const BuyerHome = () => {
 
       {/* Seller Cards */}
       <h2 className="text-3xl font-extrabold mb-4 text-red-600">
-        Nearby Top Sellers
+        Top Sellers
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
         {sellers.map((seller) => (

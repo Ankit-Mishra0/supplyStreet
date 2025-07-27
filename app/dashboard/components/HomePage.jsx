@@ -1,13 +1,24 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import { auth, db } from "@/lib/firebase";
-import { doc, getDoc } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  collection,
+  query,
+  where,
+  getDocs,
+} from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import Image from "next/image";
 
 const HomePage = () => {
   const [userData, setUserData] = useState(null);
   const [bgColor, setBgColor] = useState("");
+  const [summary, setSummary] = useState({ orders: 0, sold: 0, earnings: 0 });
+  const [orders, setOrders] = useState([]);
+  const [soldItems, setSoldItems] = useState([]);
 
   const colorOptions = [
     "bg-red-400",
@@ -23,8 +34,11 @@ const HomePage = () => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         const userDoc = await getDoc(doc(db, "users", user.uid));
+        const uid = user.uid;
+
         if (userDoc.exists()) {
           const data = userDoc.data();
+          setUserData(data);
 
           if (!data.image) {
             const randomColor =
@@ -32,7 +46,34 @@ const HomePage = () => {
             setBgColor(randomColor);
           }
 
-          setUserData(data);
+          // Get orders placed by user
+          const placedQuery = query(
+            collection(db, "orders"),
+            where("buyerId", "==", uid)
+          );
+          const placedSnap = await getDocs(placedQuery);
+          const placed = placedSnap.docs.map((doc) => doc.data());
+
+          // Get orders received (sold) by user
+          const soldQuery = query(
+            collection(db, "orders"),
+            where("sellerId", "==", uid)
+          );
+          const soldSnap = await getDocs(soldQuery);
+          const sold = soldSnap.docs.map((doc) => doc.data());
+
+          const totalEarnings = sold.reduce(
+            (sum, order) => sum + order.totalPrice,
+            0
+          );
+
+          setSummary({
+            orders: placed.length,
+            sold: sold.length,
+            earnings: totalEarnings,
+          });
+          setOrders(placed);
+          setSoldItems(sold);
         }
       }
     });
@@ -41,23 +82,6 @@ const HomePage = () => {
   }, []);
 
   const getInitial = (name) => name?.charAt(0)?.toUpperCase();
-
-  // Dummy summary and order data
-  const summary = {
-    orders: 10,
-    sold: 6,
-    earnings: 423,
-  };
-
-  const orders = [
-    { item: "2kg Tomatoes", date: "24 July 2025", from: "Vendor A" },
-    { item: "1kg Onions", date: "21 July 2025", from: "Vendor B" },
-  ];
-
-  const sold = [
-    { item: "5kg Potatoes", date: "23 July 2025", to: "Vendor Z" },
-    { item: "3kg Carrots", date: "20 July 2025", to: "Vendor Y" },
-  ];
 
   return (
     <div className="w-full flex flex-col items-center p-6 overflow-auto">
@@ -81,34 +105,56 @@ const HomePage = () => {
       {/* Name */}
       <h1 className="text-2xl font-bold mb-6">{userData?.name}</h1>
 
-      {/* Summary Section */}
+      {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl mb-10">
-        <SummaryCard title="Orders Recieved" value={summary.orders} color="bg-blue-100" />
-        <SummaryCard title="Products Sold" value={summary.sold} color="bg-green-100" />
-        <SummaryCard title="Earnings (₹)" value={summary.earnings} color="bg-yellow-100" />
+        <SummaryCard
+          title="Orders Placed"
+          value={summary.orders}
+          color="bg-blue-100"
+        />
+        <SummaryCard
+          title="Orders Received"
+          value={summary.sold}
+          color="bg-green-100"
+        />
+        <SummaryCard
+          title="Earnings (₹)"
+          value={summary.earnings}
+          color="bg-yellow-100"
+        />
       </div>
 
-      {/* Past Orders */}
+      {/* Orders Placed Section */}
       <div className="w-full max-w-5xl mb-8">
         <h2 className="text-xl font-semibold mb-3">My Past Orders</h2>
         <div className="bg-white rounded-lg shadow-sm p-4 space-y-2">
-          {orders.map((order, idx) => (
-            <p key={idx}>
-              You ordered <strong>{order.item}</strong> from <em>{order.from}</em> on <span>{order.date}</span>.
-            </p>
-          ))}
+          {orders.length > 0 ? (
+            orders.map((order, idx) => (
+              <p key={idx}>
+                You ordered <strong>{order.quantity}x {order.productName}</strong> on{" "}
+                <span>{new Date(order.timestamp?.toDate()).toDateString()}</span>.
+              </p>
+            ))
+          ) : (
+            <p>No past orders.</p>
+          )}
         </div>
       </div>
 
-      {/* Sold Items */}
+      {/* Sold Items Section */}
       <div className="w-full max-w-5xl">
         <h2 className="text-xl font-semibold mb-3">What I Have Sold</h2>
         <div className="bg-white rounded-lg shadow-sm p-4 space-y-2">
-          {sold.map((sale, idx) => (
-            <p key={idx}>
-              You sold <strong>{sale.item}</strong> to <em>{sale.to}</em> on <span>{sale.date}</span>.
-            </p>
-          ))}
+          {soldItems.length > 0 ? (
+            soldItems.map((sale, idx) => (
+              <p key={idx}>
+                You sold <strong>{sale.quantity}x {sale.productName}</strong> on{" "}
+                <span>{new Date(sale.timestamp?.toDate()).toDateString()}</span>.
+              </p>
+            ))
+          ) : (
+            <p>No items sold yet.</p>
+          )}
         </div>
       </div>
     </div>

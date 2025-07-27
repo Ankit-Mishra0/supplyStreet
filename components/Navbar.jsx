@@ -6,8 +6,10 @@ import { auth, db } from "@/lib/firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
+  const router=useRouter();
   const path = usePathname();
   const [user, setUser] = useState(null);
   const [userData, setUserData] = useState(null);
@@ -53,6 +55,8 @@ export default function Navbar() {
     setUser(null);
     setUserData(null);
     setMenuOpen(false);
+    router.push("/BuyerHome")
+
   };
 
   const getInitial = (name) => name?.charAt(0)?.toUpperCase();
